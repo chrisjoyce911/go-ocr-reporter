@@ -159,7 +159,7 @@ func (o *OCR) GetCustomers() ([]Customer, []byte, error) {
 	var err error
 	var c []Customer
 
-	url := "/customer/customers?_format =json&_token=%s&_tenant=%s&_language=en"
+	url := "/customer/customers?_format=json&_token=%s&_tenant=%s&_language=en"
 	resp, err := o.execRequest("GET", url, body)
 	if err != nil {
 		fmt.Println(err)
