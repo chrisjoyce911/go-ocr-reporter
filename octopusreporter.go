@@ -2,6 +2,7 @@ package ocr
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -139,7 +140,10 @@ type OCR struct {
 // NewGitlab generates a new gitlab service
 func NewOCR(baseUrl, workspaceID, accessToken, ocid string) *OCR {
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
 
 	return &OCR{
 		BaseUrl:     baseUrl,
