@@ -250,7 +250,6 @@ func (o *OCR) execRequest(method, url string, body []byte) (*http.Response, erro
 	url = fmt.Sprintf(url, o.AccessToken, o.Ocid)
 	url = fmt.Sprintf("%s/api/workspace/%s%s", o.BaseUrl, o.WorkspaceID, url)
 
-	fmt.Println(url)
 	if body != nil {
 		reader := bytes.NewReader(body)
 		req, err = http.NewRequest(method, url, reader)
@@ -272,7 +271,7 @@ func (o *OCR) execRequest(method, url string, body []byte) (*http.Response, erro
 	}
 
 	if resp.StatusCode >= http.StatusBadRequest {
-		err = fmt.Errorf("*Gitlab.buildAndExecRequest failed: <%d> %s %s", resp.StatusCode, req.Method, req.URL)
+		err = fmt.Errorf("*ocr.buildAndExecRequest failed: <%d> %s %s", resp.StatusCode, req.Method, req.URL)
 	}
 
 	return resp, err
