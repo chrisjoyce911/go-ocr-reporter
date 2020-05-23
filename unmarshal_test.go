@@ -1,4 +1,4 @@
-package ocr-reporter
+package ocr
 
 import (
 	"testing"
