@@ -1,4 +1,4 @@
-package ocr
+package go-ocr-reporter 
 
 import (
 	"testing"
