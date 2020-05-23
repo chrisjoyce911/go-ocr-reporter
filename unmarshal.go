@@ -1,4 +1,4 @@
-package go-ocr-reporter 
+package ocr-reporter
 
 import (
 	"strconv"

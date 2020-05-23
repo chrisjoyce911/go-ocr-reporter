@@ -1,3 +1,3 @@
-module github.com/chrisjoyce911/go-ocr-reporter
+module github.com/chrisjoyce911/ocr-reporter
 
 go 1.14
