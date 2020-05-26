@@ -1,0 +1,36 @@
+{
+    "items": [
+        {
+            "id": 2,
+            "ws_id": "f8e508b7bf16",
+            "customer_group_id": null,
+            "group_label": null,
+            "ref_id": null,
+            "internal_id": "52",
+            "extra_field_1": "",
+            "extra_field_2": "",
+            "label": "Customer_X",
+            "own_use": 0,
+            "enrollment_number": "",
+            "contact_person": "",
+            "email": "",
+            "phone": "",
+            "pricecategory_id": "",
+            "currency_id": "",
+            "country_id": "",
+            "testing_start_date": null,
+            "licensing_start_date": null,
+            "licensing_end_date": null,
+            "after_import": "user@ou=%/Customer_X/%\r\nserver@ou=%/Customer_X/%",
+            "status": "",
+            "data_source": null,
+            "scanner_id": null,
+            "updated": 1589951406,
+            "real_updated": 1589951406,
+            "deleted": null,
+            "count_users": "5",
+            "count_servers": "1",
+            "count_direct_scan_servers": "1"
+        }
+    ]
+}
