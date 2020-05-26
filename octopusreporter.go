@@ -157,14 +157,11 @@ func NewOCR(baseUrl, workspaceID, accessToken, ocid string) *OCR {
 
 func (o *OCR) LoadCustomers(json []byte) ([]Customer, error) {
 
-	var err error
-	var c []Customer
-
 	// Use a local file for development
 	// customersfile, _ = ioutil.ReadFile("/Users/chris/go/src/github.com/chrisjoyce911/ocr/customers.json")
 
-	c, err = readCustomers(json)
-	return c, err
+	return readCustomers(json)
+
 }
 
 func (o *OCR) GetCustomers() ([]Customer, []byte, error) {
@@ -218,14 +215,25 @@ func (o *OCR) GetUsers() ([]User, []byte, error) {
 		fmt.Println(err)
 	}
 
-	usersfile, err := ioutil.ReadAll(resp.Body)
+	body, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println(err)
 	}
-	// // Use a local file for development
-	// usersfile, _ = ioutil.ReadFile("/Users/chris/go/src/github.com/chrisjoyce911/ocr/users.json")
+
+	u, err = readUsers(body)
+	return u, body, err
+}
+
+func (o *OCR) LoadUsers(userData []byte) ([]User, error) {
+	return readUsers(userData)
+}
+
+func readUsers(userData []byte) ([]User, error) {
+	var err error
+	var u []User
+
 	var users map[string]User
-	err = json.Unmarshal([]byte(usersfile), &users)
+	err = json.Unmarshal([]byte(userData), &users)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -234,7 +242,7 @@ func (o *OCR) GetUsers() ([]User, []byte, error) {
 		u = append(u, us)
 	}
 
-	return u, body, err
+	return u, err
 }
 
 func (o *OCR) GetUsersSoftware() ([]Software, []byte, error) {
@@ -254,15 +262,25 @@ func (o *OCR) GetUsersSoftware() ([]Software, []byte, error) {
 		fmt.Println(err)
 	}
 
-	usersoftwarefile, err := ioutil.ReadAll(resp.Body)
+	body, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	// Use a local file for development
-	// usersoftwarefile, _ = ioutil.ReadFile("/Users/chris/go/src/github.com/chrisjoyce911/ocr/usersoftware.json")
+	s, err = readUsersSoftware(body)
+	return s, body, err
+}
+
+func (o *OCR) LoadUsersSoftware(data []byte) ([]Software, error) {
+	return readUsersSoftware(data)
+}
+
+func readUsersSoftware(data []byte) ([]Software, error) {
+	var err error
+	var s []Software
+
 	var software map[string]Software
-	err = json.Unmarshal([]byte(usersoftwarefile), &software)
+	err = json.Unmarshal([]byte(data), &software)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -271,7 +289,7 @@ func (o *OCR) GetUsersSoftware() ([]Software, []byte, error) {
 		s = append(s, us)
 	}
 
-	return s, body, err
+	return s, err
 }
 
 func (o *OCR) execRequest(method, url string, body []byte) (*http.Response, error) {
