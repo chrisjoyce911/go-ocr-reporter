@@ -7,7 +7,7 @@ import (
 )
 
 type SpecialBool struct {
-	bool
+	Bool bool
 }
 
 type SpecialDate struct {
@@ -43,13 +43,13 @@ func (sb *SpecialBool) UnmarshalJSON(input []byte) error {
 	strInput = strings.Trim(strInput, `"`)
 	switch strInput {
 	case "0":
-		sb.bool = false
+		sb.Bool = false
 	case "1":
-		sb.bool = true
+		sb.Bool = true
 	case "No":
-		sb.bool = false
+		sb.Bool = false
 	case "Yes":
-		sb.bool = true
+		sb.Bool = true
 	}
 	return nil
 }
